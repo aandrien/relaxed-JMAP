@@ -5,15 +5,15 @@ saveplot = true;
 
 %% Figure Settings
 % figure_configuration_IEEE_standard
-set(0, 'DefaultLineLineWidth', 2);
-set(0,'DefaultAxesXGrid','on')
-set(0,'DefaultAxesYGrid','on')
-set(0,'defaultAxesFontName','Times New Roman');
-set(0,'defaultAxesFontSize',12);
-set(0,'defaultTextFontName','Times New Roman');
-set(0,'defaultTextFontSize',12);
-set(0,'defaultLegendFontName','Times New Roman');
-set(0,'defaultLegendFontSize',12);
+% set(0, 'DefaultLineLineWidth', 2);
+% set(0,'DefaultAxesXGrid','on')
+% set(0,'DefaultAxesYGrid','on')
+% set(0,'defaultAxesFontName','Times New Roman');
+% set(0,'defaultAxesFontSize',12);
+% set(0,'defaultTextFontName','Times New Roman');
+% set(0,'defaultTextFontSize',12);
+% set(0,'defaultLegendFontName','Times New Roman');
+% set(0,'defaultLegendFontSize',12);
 
 lineStyles = linspecer(4);
 
@@ -46,7 +46,8 @@ plot(e,JRDP_PD./JOPT,'color',lineStyles(3,:),'LineStyle','--')
 % plot(e,JIMM./JOPT)
 plot(e,JEM./JOPT,'color',lineStyles(4,:))
 ylim([0.9,1.6])
-ylabel('Scaled cost [-]','interpreter','latex')
+
+ylabel('ylabeltop')
 legend('KF','LMI','PosDef','EM')
 grid on
 ax(2) = subplot(2,1,2);
@@ -55,17 +56,16 @@ hold on
 plot(e,nHYP_PD,'color',lineStyles(3,:),'LineStyle','--')
 grid on
 legend('LMI','PosDef')
-ylabel('Number of hypotheses [-]','interpreter','latex')
 
 
-
-xlabel('Relaxation parameter $\epsilon$','interpreter','latex')
+ylabel('ylabel')
+xlabel('xlabel')
 linkaxes(ax,'x')
 xlim([0, 5])
 
 if(saveplot)
     set(gcf,'color','w');
-    export_fig ..\..\..\V8\Pictures\MC_cost_vs_epsilon.eps
+    print -depsc ..\..\..\V9\Pictures\MC_cost_vs_epsilon.eps
 end
 
 figure
@@ -76,13 +76,20 @@ semilogy(e,T_PD,'color',lineStyles(3,:))
 semilogy(e,T_EM,'color',lineStyles(4,:))
 grid on
 legend('KF','LMI','PosDef','EM')
-ylabel('Computation time [s]','interpreter','latex')
-xlabel('Relaxation parameter $\epsilon$','interpreter','latex')
+
+yticklabels
+for ii = 1:length(yticklabels)
+   tmp{ii} = ['y' num2str(ii)];
+end
+yticklabels(tmp)
+
+ylabel('ylabel')
+xlabel('xlabel')
 xlim([0, 1])
 
 if(saveplot)
     set(gcf,'color','w');
-    export_fig ..\..\..\V8\Pictures\MC_time_vs_epsilon.eps
+    print -depsc ..\..\..\V9\Pictures\MC_time_vs_epsilon.eps
 end
 
 
